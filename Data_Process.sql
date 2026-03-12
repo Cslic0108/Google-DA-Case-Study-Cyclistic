@@ -19,3 +19,14 @@ MODIFY COLUMN start_lat DECIMAL(10, 8),
 MODIFY COLUMN start_lng DECIMAL(11, 8),
 MODIFY COLUMN end_lat DECIMAL(10, 8),
 MODIFY COLUMN end_lng DECIMAL(11, 8);
+
+-- Inconsistent travel record
+SELECT COUNT(*) AS inconsist_travel_count
+FROM main_data
+WHERE ended_at < started_at;
+
+-- Trip Duration Validation
+SELECT COUNT(*) AS less_than_60
+FROM main_data
+WHERE started_at >= ended_at 
+   OR TIMESTAMPDIFF(SECOND, started_at, ended_at) < 60;
