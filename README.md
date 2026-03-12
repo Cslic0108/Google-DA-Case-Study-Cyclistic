@@ -256,7 +256,7 @@ output:
 
 Data Visualization: Tableau
 
-![Monthly Trip Trend.png](attachment:a38b788f-eea6-4f76-bbed-a0fa05a551f2:Monthly_Trip_Trend.png)
+<img width="1173" height="635" alt="Monthly Trip Trend" src="https://github.com/user-attachments/assets/0e24dcd1-4344-4f7c-b4ba-648cfc44c77b" />
 
 This line chart shows that both Casual riders and Members reach their peak usage during June to August, likely driven by warmer weather and peak travel seasons. Conversely, there is a sharp decline from October to December, which strongly suggests that bike usage is highly dependent on seasonal temperature changes in Chicago.
 
@@ -264,7 +264,7 @@ This line chart shows that both Casual riders and Members reach their peak usage
 
 Data Visualization: Tableau
 
-![Week Trip Distribution.png](attachment:f109ebbe-8b2c-41cb-8490-0394d32b005e:Week_Trip_Distribution.png)
+<img width="1325" height="635" alt="Week Trip Distribution" src="https://github.com/user-attachments/assets/36e431a6-9498-4519-99f0-08aafe23bb16" />
 
 Based on the weekly bar graph, a distinct behavioral divide is observed between two segments. During weekdays, Casual ridership remains significantly lower than Members. In contrast, the gap between the two groups narrows during weekend, with Casual ridership reaching its peak. This trend reinforces the conclusion that Casual riders primarily utilize the service for recreational use, whereas Members rely on it as a functional daily transportation solution.
 
@@ -272,7 +272,7 @@ Based on the weekly bar graph, a distinct behavioral divide is observed between 
 
 Data Visualization: Tableau
 
-![Peak Usage Periods.png](attachment:35e7ffc0-c839-4f3b-9c8b-2fe328ab2f44:Peak_Usage_Periods.png)
+<img width="1393" height="635" alt="Peak Usage Periods" src="https://github.com/user-attachments/assets/4ddad52e-9520-4484-8457-23f9951089c9" />
 
 The hourly chart clearly shows that Member activity peaks precisely at 0800 and 1700, providing strong evidence for our earlier conclusion that members primarily use the service for daily commuting.
 
@@ -282,11 +282,11 @@ For Casual riders, their usage gradually builds throughout the day, peaking at 1
 
 Data Visualization: Tableau
 
-![Ride Duration (1).png](attachment:3cfcb701-db1a-493a-a3ed-6c81ebfaf63f:Ride_Duration_(1).png)
+<img width="404" height="635" alt="Ride Duration (1)" src="https://github.com/user-attachments/assets/66d20bec-e93e-4ce8-8b2b-c85cac26d9c4" />
 
 While member take more frequent trips, Casual riders spend twice as much time on each ride. Segmenting this behavior by bike type provides additional insihts into user intent.
 
-![Trip Duration by Rideable Type (1).png](attachment:281ce4d5-bd5d-4a0a-918e-81a779e2cd22:Trip_Duration_by_Rideable_Type_(1).png)
+<img width="556" height="670" alt="Trip Duration by Rideable Type (1)" src="https://github.com/user-attachments/assets/c7db0f27-cbe2-48fd-a5b7-c1d17bb48831" />
 
 When it come to Classic Bike, the average duration for casual riders is more than twice that if Members. This suggest that when choosing classic bikes, casual rider are likely engageing in relaxed activities where time is not a primary constraint.
 
@@ -322,7 +322,7 @@ Data Visualization: Tableau
 
 The maps below illustrate the high-activity zones for both Casual riders and member.
 
-![Dashboard 1.png](attachment:158a91a9-2543-4ada-a4ae-2f4ed9e69c4a:Dashboard_1.png)
+<img width="1374" height="1099" alt="Dashboard 1" src="https://github.com/user-attachments/assets/3b66bc70-84b5-4f34-8bd0-2b2f84bd03c3" />
 
 The comparison of active zones reveals a geographic divide between two segments. Casual riders are overwhelmingly concenstrated along the eastern lakefront and near major tourism landmarks, reinforcing thier preference on relaxing activities.
 
@@ -330,7 +330,7 @@ In contrast, Members activity is widely distributed across the city’s infrastr
 
 ### 4.7 Identification of Growth Potentials
 
-![Identification of Growth Potentials.png](attachment:077b48a4-9130-404c-bd02-68fae22753b2:Identification_of_Growth_Potentials.png)
+<img width="1341" height="612" alt="Identification of Growth Potentials" src="https://github.com/user-attachments/assets/98996d83-efee-4314-a5ef-255de36f242a" />
 
 By analyzing the total volume under the ‘ALL’ filter, I also identified four strategically significant locations: Theater on the Lake, Wells St & Concord Ln, Streeter Dr & Grand Ave, and Millennium Park.
 
@@ -340,7 +340,7 @@ These locations act as high-synergy zones where business and leisure traffic con
 
 To enable stakeholders to visually contrast the usage habits of both user segments, I devoloped a comprehensive dashboard intergrating monthly, weekly, hourly and geospatial dimensions. The centralized view allows stakeholders to identify the key insights efficiently .
 
-![Dashboard 2.png](attachment:d0cc0c5f-250b-4c41-a149-1cd81d6cf8d5:Dashboard_2.png)
+<img width="1374" height="1099" alt="Dashboard 2" src="https://github.com/user-attachments/assets/d126b36c-5d42-45b8-9e11-23660628a8dd" />
 
 ## 6. Act & Recommendation
 
