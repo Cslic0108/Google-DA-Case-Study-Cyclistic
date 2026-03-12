@@ -118,7 +118,7 @@ This shows that it is essential to exclude these noise to prevent downward bias 
 
 ### 3.4 Create the Final Data
 
-I created a View that filters out all identified anomalies. This ensures that all future queries in the Analyze phase are performed on a consistent, high-integrity data pool without the need to re-apply filters.
+I created a View that filters out all identified anomalies. This ensures that all future queries in the Analyze phase are performed on a consistent, high-integrity data pool without the need to re-apply filters.  
 [Create final data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 
 
@@ -128,28 +128,12 @@ I created a View that filters out all identified anomalies. This ensures that a
 
 **4.1.1 Database Indexing**
 
-Before analyzing data, I’ve notice that current size of data was massize(5.5 million). To enchance the performance of quering, I implemented database indexing. By creating B-tree indexes on the `start_at` and `member_casual` columns, this would help to transit the workload from high-latency disk scans to index-based lookups.
+Before analyzing data, I’ve notice that current size of data was massize(5.5 million). To enchance the performance of quering, I implemented database indexing. By creating B-tree indexes on the `start_at` and `member_casual` columns, this would help to transit the workload from high-latency disk scans to index-based lookups.  
+[Creating index](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/edit/main/Analyze.sql)  
 
-- Creating index
-
-```sql
- CREATE INDEX idx_started_at ON main_data(started_at);
- CREATE INDEX idx_member_casual ON main_data(member_casual);
-```
-
-After creating index, I run a EXPLAIN command to audit the query optimizer’s behavior.
-
-- Indexing validation
-
-```sql
-EXPLAIN SELECT member_casual, COUNT(*) 
-FROM v_clean_trips 
-WHERE started_at > '2025-01-01' 
-GROUP BY member_casual;
-```
-
-output:
-
+After creating index, I run a EXPLAIN command to audit the query optimizer’s behavior.  
+[Indexing validation](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/edit/main/Analyze.sql)  
+output:  
 | id | select_type | table | partitions | type | possible_keys | key | key_len | ref | rows | filtered | Extra |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | SIMPLE | main_data | NULL | index | idx_started_at,idx_member_casual | idx_member_casual | 203 | NULL | 5405791 | 16.66 | Using where |
@@ -158,23 +142,9 @@ Despite the high row count of the result, the indexes remain helpful for the dat
 
 **4.1.2 Analytical Schema Aggregation**
 
-To bridge the gap between large-scale data and interactive visualization, I turn the 5.5 million record into a multi-dimensional aggregate schema. IBy using MySQL, I pre-calculate Trip counts and average durations, extract critical dimension such as Month, Day of Week, and Hour of Day from standard timestamps. These pre-process steps will give us a useful table for further analysis and visualizations.
-
-```sql
-SELECT 
-    member_casual,
-    DAYOFWEEK(started_at) AS day_of_week,
-    HOUR(started_at) AS hour_of_day,
-    MONTH(started_at) AS month_num,
-    rideable_type,
-    COUNT(*) AS trip_count,
-    ROUND(AVG(TIMESTAMPDIFF(SECOND, started_at, ended_at)/60), 2) AS avg_duration
-FROM v_clean_trips
-GROUP BY member_casual, day_of_week, hour_of_day, month_num, rideable_type;
-```
-
-output:
-
+To bridge the gap between large-scale data and interactive visualization, I turn the 5.5 million record into a multi-dimensional aggregate schema. IBy using MySQL, I pre-calculate Trip counts and average durations, extract critical dimension such as Month, Day of Week, and Hour of Day from standard timestamps. These pre-process steps will give us a useful table for further analysis and visualizations.  
+[Dimensional Modeling & Analytical Aggregation](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/edit/main/Analyze.sql)  
+output:  
 | member_casual | day_of_week | hour_of_day | month_num | rideable_type | trip_count | avg_duration |
 | --- | --- | --- | --- | --- | --- | --- |
 | member | 3 | 17 | 1 | classic_bike | 753 | 13.03 |
@@ -183,7 +153,7 @@ output:
 
 ### 4.2 Monthly Trip Trend
 
-Data Visualization: Tableau
+Data Visualization: [Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/MonthlyTripTrend)
 
 <img width="1173" height="635" alt="Monthly Trip Trend" src="https://github.com/user-attachments/assets/0e24dcd1-4344-4f7c-b4ba-648cfc44c77b" />
 
@@ -191,7 +161,7 @@ This line chart shows that both Casual riders and Members reach their peak usage
 
 ### 4.3 Week Trip Distribution
 
-Data Visualization: Tableau
+Data Visualization: [Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/WeekTripDistribution)
 
 <img width="1325" height="635" alt="Week Trip Distribution" src="https://github.com/user-attachments/assets/36e431a6-9498-4519-99f0-08aafe23bb16" />
 
@@ -199,7 +169,7 @@ Based on the weekly bar graph, a distinct behavioral divide is observed between 
 
 ### 4.4 Peak Usage Periods
 
-Data Visualization: Tableau
+Data Visualization: [Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/PeakUsagePeriods)
 
 <img width="1393" height="635" alt="Peak Usage Periods" src="https://github.com/user-attachments/assets/4ddad52e-9520-4484-8457-23f9951089c9" />
 
@@ -209,7 +179,7 @@ For Casual riders, their usage gradually builds throughout the day, peaking at 1
 
 ### 4.5 Ride Duration
 
-Data Visualization: Tableau
+Data Visualization: [Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/RideDuration)
 
 <img width="404" height="635" alt="Ride Duration (1)" src="https://github.com/user-attachments/assets/66d20bec-e93e-4ce8-8b2b-c85cac26d9c4" />
 
@@ -223,31 +193,16 @@ For electric bikes, the trip duration for both groups decreases and the gap narr
 
 ### 4.6 Geospatial analysis
 
-Given that the multi-dimensional aggrgate table focused on temporal and catogorical trends, I exported a seperate geospatial dataset for location-based analysis. This allows me to make a high-precesion station mapping without compromising the performance of the core analytical schema.
-
-```sql
-SELECT 
-    start_station_name,
-    member_casual,
-    AVG(start_lat) AS lat,
-    AVG(start_lng) AS lng,
-    COUNT(*) AS trip_count
-FROM v_clean_trips
-WHERE start_station_name IS NOT NULL 
-  AND start_station_name <> ''
-  AND start_lat IS NOT NULL
-GROUP BY start_station_name, member_casual;
-```
-
-output：
-
+Given that the multi-dimensional aggrgate table focused on temporal and catogorical trends, I exported a seperate geospatial dataset for location-based analysis. This allows me to make a high-precesion station mapping without compromising the performance of the core analytical schema.  
+[Geospatial analysis](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/edit/main/Analyze.sql)  
+output：  
 | start_station_name | member_casual | lat | lng | trip_count |
 | --- | --- | --- | --- | --- |
 | Wacker Dr & Washington St | member | 41.88314629 | -87.6372436 | 7086 |
 | Halsted St & Wrightwood Ave | member | 41.92914322 | -87.64908031 | 8802 |
 | … | …. | … | … | … |
 
-Data Visualization: Tableau
+Data Visualization: [Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/Conparisonofactivezones)
 
 The maps below illustrate the high-activity zones for both Casual riders and member.
 
@@ -267,7 +222,8 @@ These locations act as high-synergy zones where business and leisure traffic con
 
 ## 5. Share
 
-To enable stakeholders to visually contrast the usage habits of both user segments, I devoloped a comprehensive dashboard intergrating monthly, weekly, hourly and geospatial dimensions. The centralized view allows stakeholders to identify the key insights efficiently .
+To enable stakeholders to visually contrast the usage habits of both user segments, I devoloped a comprehensive dashboard intergrating monthly, weekly, hourly and geospatial dimensions. The centralized view allows stakeholders to identify the key insights efficiently.  
+[Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/Dashboard2)
 
 <img width="1374" height="1099" alt="Dashboard 2" src="https://github.com/user-attachments/assets/d126b36c-5d42-45b8-9e11-23660628a8dd" />
 
