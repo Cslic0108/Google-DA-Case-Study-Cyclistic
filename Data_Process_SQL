@@ -1,7 +1,0 @@
-- Converting strings to `DATETIME`
-
-```sql
-ALTER TABLE main_data 
-MODIFY COLUMN started_at DATETIME,
-MODIFY COLUMN ended_at DATETIME;
-```
