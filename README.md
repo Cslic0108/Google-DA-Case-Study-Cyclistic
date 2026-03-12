@@ -40,7 +40,7 @@ Using a relational Database Management System allows for strict data type defini
 
 ### 2.4 Data Schema
 
-Observation: During the data ingestion via Python, I observed a parsing error**,** the entire row of CSV data was being stored in the `ride_id` column, leaving all subsequent columns as `NULL` . To resolve this, I recofigured the ETL script explicitly defining the `fieldsTerminatedBy: ','`  and switched to a `VARCHAR` staging schema to prevent further data loss.  
+Observation: During the data ingestion via Python, I observed a parsing error, the entire row of CSV data was being stored in the `ride_id` column, leaving all subsequent columns as `NULL` . To resolve this, I recofigured the ETL script explicitly defining the `fieldsTerminatedBy: ','`  and switched to a `VARCHAR` staging schema to prevent further data loss.  
 
 The raw data should look like  
 | ride_id | rideable_type | started_at | ended_at | start_station_name | start_station_id | end_station_name | end_station_id | start_lat | start_lng | end_lat | end_lng | member_casual |
