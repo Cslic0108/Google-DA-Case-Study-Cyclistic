@@ -34,7 +34,7 @@ To ensure the intergrity of the insights, the dataset was validated against the 
 
 ### 2.3 Technical Infrastructure
 
-The total volume for 2025 exceeds 5.5 million rows, a spreadsheet software like Excel was insufficient for performance nd scalability. Therefore, this study is using **MySQL 8.0** for further analysis. 
+The total volume for 2025 exceeds 5.5 million rows, a spreadsheet software like Excel was insufficient for performance and scalability. Therefore, this study is using **MySQL 8.0** for further analysis. 
 
 Using a relational Database Management System allows for strict data type definitions and the enforcement of primary keys to prevent duplicate entriies. MySQL also enables the use of index and clistering, which significantly reduce execution time for complex aggregations on multi-million-row datasets.
 
