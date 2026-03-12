@@ -40,8 +40,17 @@ Using a relational Database Management System allows for strict data type defini
 
 ### 2.4 Data Schema
 
-Observation: During the data ingestion via Python, I observed a parsing error**,** the entire row of CSV data was being stored in the `ride_id` column, leaving all subsequent columns as `NULL` . To resolve this, I recofigured the ETL script explicitly defining the `fieldsTerminatedBy: ','`  and switched to a `VARCHAR` staging schema to prevent further data loss.
+Observation: During the data ingestion via Python, I observed a parsing error**,** the entire row of CSV data was being stored in the `ride_id` column, leaving all subsequent columns as `NULL` . To resolve this, I recofigured the ETL script explicitly defining the `fieldsTerminatedBy: ','`  and switched to a `VARCHAR` staging schema to prevent further data loss.  
 
+The raw data should look like  
+| ride_id | rideable_type | started_at | ended_at | start_station_name | start_station_id | end_station_name | end_station_id | start_lat | start_lng | end_lat | end_lng | member_casual |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 7569BC890583FCD7 | classic_bike | 2025-01-21 17:23:55 | 2025-01-21 17:37:52 | Wacker Dr & Washington St | KA1503000072 | McClurg Ct & Ohio St | TA1306000029 | 41.88314 | -87.6372 | 41.89259 | -87.6173 | member |
+| 013609308856B7FC | electric_bike | 2025-01-11 15:44:07 | 2025-01-11 15:49:11 | Halsted St & Wrightwood Ave | TA1309000061 | Racine Ave & Belmont Ave | TA1308000019 | 41.92915 | -87.6492 | 41.93974 | -87.6589 | member |
+| EACACD3CE0607C0D | classic_bike | 2025-01-02 15:16:28 | 2025-01-02 15:28:03 | Southport Ave & Waveland Ave | 13235 | Broadway & Cornelia Ave | 13278 | 41.94823 | -87.6641 | 41.94553 | -87.6464 | member |
+| … | … | … | … | … | … | … | … | … | … | … | … | … |  
+
+After the further data process steps, here's the final table structure.  
 Final Table Structure:
 
 - Primary Key: `ride_id` (Ensures each trip is unique).
