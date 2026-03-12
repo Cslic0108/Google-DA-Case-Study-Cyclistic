@@ -83,18 +83,18 @@ output:
 
 To ensure the reliability of the behavioral insights. It was important to remove anomalous record. These inconsistencies could brought impact to the analysis. leading a inaccurate conclusions. A comparitive analysis between the raw dataset and cleaned dataset reveal a significant shift in average trip durations, comfirming that the removal of noise is essential for the analysis.
 
-First, calculate average duration with raw data.
-[Calculate average duration with raw data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
-output:
+First, calculate average duration with raw data.  
+[Calculate average duration with raw data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)  
+output:  
 | member_casual | total_rows | raw_avg_duration |
 | --- | --- | --- |
 | member | 3553497 | 11.8440 |
 | casual | 1999497 | 22.1086
  |
 
-Then calculate the average duration with cleaned data.
-[Calculate average duration with cleaned data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
-output：
+Then calculate the average duration with cleaned data.  
+[Calculate average duration with cleaned data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)  
+output：  
 | member_casual | total_rows | cleaned_avg_duration |
 | --- | --- | --- |
 | member | 3553497 | 12.57 |
