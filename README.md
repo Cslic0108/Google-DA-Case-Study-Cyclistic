@@ -83,42 +83,18 @@ output:
 
 To ensure the reliability of the behavioral insights. It was important to remove anomalous record. These inconsistencies could brought impact to the analysis. leading a inaccurate conclusions. A comparitive analysis between the raw dataset and cleaned dataset reveal a significant shift in average trip durations, comfirming that the removal of noise is essential for the analysis.
 
-- Calculate average duration with raw data
-
-```sql
-SELECT 
-    member_casual, 
-    COUNT(*) as total_rows,
-    AVG(TIMESTAMPDIFF(MINUTE, started_at, ended_at)) as raw_avg_duration
-FROM main_data
-GROUP BY member_casual;
-```
-
+First, calculate average duration with raw data.
+[Calculate average duration with raw data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 output:
-
 | member_casual | total_rows | raw_avg_duration |
 | --- | --- | --- |
 | member | 3553497 | 11.8440 |
 | casual | 1999497 | 22.1086
  |
-- Calculate average duration with cleaned data
 
-```sql
-SELECT 
-    member_casual, 
-    COUNT(*) AS total_rows,
-    ROUND(AVG(CASE 
-        WHEN TIMESTAMPDIFF(SECOND, started_at, ended_at) >= 60 
-             AND started_at < ended_at 
-        THEN TIMESTAMPDIFF(SECOND, started_at, ended_at) 
-        ELSE NULL 
-    END) / 60, 2) AS cleaned_avg_duration
-FROM main_data
-GROUP BY member_casual;
-```
-
+Then calculate the average duration with cleaned data.
+[Calculate average duration with cleaned data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 output：
-
 | member_casual | total_rows | cleaned_avg_duration |
 | --- | --- | --- |
 | member | 3553497 | 12.57 |
@@ -135,14 +111,8 @@ This shows that it is essential to exclude these noise to prevent downward bias 
 ### 3.4 Create the Final Data
 
 I created a View that filters out all identified anomalies. This ensures that all future queries in the Analyze phase are performed on a consistent, high-integrity data pool without the need to re-apply filters.
+[Create final data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 
-```sql
-CREATE VIEW v_clean_trips AS
-SELECT *
-FROM main_data
-WHERE started_at < ended_at 
-  AND TIMESTAMPDIFF(SECOND, started_at, ended_at) >= 60;
-```
 
 ## 4. Analyze
 
