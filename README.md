@@ -57,7 +57,7 @@ After ensuring that all raw data was succesfully imported, I executed a schema h
 
 [Converting strings to `DATETIME`](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 
-During the reformating phase, I’ve identify some of the data is empty stings, these data need to be standartize before taking further action. This help ensuring data intergrity.
+During the reformating phase, I’ve identify some of the data is empty stings, these data need to be standartize before taking further action. This help ensuring data intergrity.  
 [Cleanup NULL](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 
 - Converting strings to `DECIMAL`
