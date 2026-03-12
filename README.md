@@ -66,14 +66,14 @@ Once cleaning the NULL value, I converted latitude and longitude coordinates fro
 
 After reformatting field type, I applied some filters to ensure the dataset represents gunuine user behavior.  
 To identify trips with end time earlier than start time, I applied following filter to detect the inconsistent records.  
-[Inconsistent travel record](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
+[Inconsistent travel record](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)  
 output:  
 | inconsist_travel_count |
 | --- |
 | 29 |
 
 To prevent the analysis affected by accidental dockings or faulty equipment, I applied a 60 second threshold. Trips lasting less than one minute were classified as ‘non-utilization events’ and excluded from the final analysis to ensure a more accurate representative of average trip durations.  
-[Trip Duration Validation](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
+[Trip Duration Validation](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)  
 output:  
 | less_than_60 |
 | --- |
