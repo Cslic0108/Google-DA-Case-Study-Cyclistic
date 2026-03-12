@@ -54,56 +54,27 @@ Final Table Structure:
 ### 3.1 Field Type Reformatting & Optimization
 
 After ensuring that all raw data was succesfully imported, I executed a schema hardening process to convert `VARCHAR` raw string into structured data type for further analysis.
-
 [Converting strings to `DATETIME`](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 
 During the reformating phase, I’ve identify some of the data is empty stings, these data need to be standartize before taking further action. This help ensuring data intergrity.  
 [Cleanup NULL](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 
-- Converting strings to `DECIMAL`
-
-Once cleaning the NULL value, I converted latitude and longitude coordinates from strings to DECIMAL(10, 8).
-
-```sql
-ALTER TABLE main_data 
-MODIFY COLUMN start_lat DECIMAL(10, 8),
-MODIFY COLUMN start_lng DECIMAL(11, 8),
-MODIFY COLUMN end_lat DECIMAL(10, 8),
-MODIFY COLUMN end_lng DECIMAL(11, 8);
-```
+Once cleaning the NULL value, I converted latitude and longitude coordinates from strings to DECIMAL(10, 8).  
+[Converting strings to `DECIMAL`](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 
 ### 3.2 Logical Validation
 
-After reformatting field type, I applied some filters to ensure the dataset represents gunuine user behavior.
-
-- Inconsistent travel record
-
-To identify trips with end time earlier than start time, I applied following filter to detect the inconsistent records.
-
-```sql
-SELECT COUNT(*) AS inconsist_travel_count
-FROM main_data
-WHERE ended_at < started_at;
-```
-
+After reformatting field type, I applied some filters to ensure the dataset represents gunuine user behavior.  
+To identify trips with end time earlier than start time, I applied following filter to detect the inconsistent records.  
+[Inconsistent travel record](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 output:
-
 | inconsist_travel_count |
 | --- |
 | 29 |
-- Trip Duration Validation
 
-To prevent the analysis affected by accidental dockings or faulty equipment, I applied a 60 second threshold. Trips lasting less than one minute were classified as ‘non-utilization events’ and excluded from the final analysis to ensure a more accurate representative of average trip durations.
-
-```sql
-SELECT COUNT(*) AS less_than_60
-FROM main_data
-WHERE started_at >= ended_at 
-   OR TIMESTAMPDIFF(SECOND, started_at, ended_at) < 60;
-```
-
+To prevent the analysis affected by accidental dockings or faulty equipment, I applied a 60 second threshold. Trips lasting less than one minute were classified as ‘non-utilization events’ and excluded from the final analysis to ensure a more accurate representative of average trip durations.  
+[Trip Duration Validation](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 output:
-
 | less_than_60 |
 | --- |
 | 146923 |
