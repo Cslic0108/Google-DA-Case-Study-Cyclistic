@@ -202,7 +202,7 @@ output：
 | Halsted St & Wrightwood Ave | member | 41.92914322 | -87.64908031 | 8802 |
 | … | …. | … | … | … |
 
-Data Visualization: [Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/Conparisonofactivezones)
+Data Visualization: [Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/Dashboard1)
 
 The maps below illustrate the high-activity zones for both Casual riders and member.
 
@@ -213,6 +213,8 @@ The comparison of active zones reveals a geographic divide between two segments.
 In contrast, Members activity is widely distributed across the city’s infrastructure. The top three locations with the highest ridership volume are stratergic transit hubs and business distinct such as the area arround Union Station. This reinforces the conclusion that their primary demand is driven by daily commuting.
 
 ### 4.7 Identification of Growth Potentials
+
+Data Visualization: [Tableau](https://public.tableau.com/app/profile/share.lic.cheong/viz/Cyclistcasestudy_17705503164600/GeographicDistributionCasual3#1)
 
 <img width="1341" height="612" alt="Identification of Growth Potentials" src="https://github.com/user-attachments/assets/98996d83-efee-4314-a5ef-255de36f242a" />
 
