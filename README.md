@@ -55,13 +55,7 @@ Final Table Structure:
 
 After ensuring that all raw data was succesfully imported, I executed a schema hardening process to convert `VARCHAR` raw string into structured data type for further analysis.
 
-- Converting strings to `DATETIME`
-
-```sql
-ALTER TABLE main_data 
-MODIFY COLUMN started_at DATETIME,
-MODIFY COLUMN ended_at DATETIME;
-```
+[- Converting strings to `DATETIME`](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)
 
 - Cleanup NULL
 
