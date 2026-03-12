@@ -89,8 +89,7 @@ output:
 | member_casual | total_rows | raw_avg_duration |
 | --- | --- | --- |
 | member | 3553497 | 11.8440 |
-| casual | 1999497 | 22.1086
- |
+| casual | 1999497 | 22.1086 |
 
 Then calculate the average duration with cleaned data.  
 [Calculate average duration with cleaned data](https://github.com/Cslic0108/Google-DA-Case-Study-Cyclistic/blob/main/Data_Process.sql)  
