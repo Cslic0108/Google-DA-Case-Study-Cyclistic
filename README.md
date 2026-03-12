@@ -14,7 +14,7 @@ Cyclistic is a bike-share company in Chicago, currently operates a fleet of 5,80
 
 ### 2.1 Data source:
 
-The dataset used for this analysis is the historical trip data provided by Cyclistic. The data is made available by Motivate International Inc. under this agreement [Links]( https://divvybikes.com/data-license-agreement.)\
+The dataset used for this analysis is the historical trip data provided by Cyclistic. The data is made available by Motivate International Inc. under this agreement. [Links]( https://divvybikes.com/data-license-agreement.)\
 The data is hosted on a secure AWS S3 bucket as the links below.\
 [Datasets](https://divvy-tripdata.s3.amazonaws.com/index.html)
 
