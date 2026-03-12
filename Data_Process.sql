@@ -30,3 +30,31 @@ SELECT COUNT(*) AS less_than_60
 FROM main_data
 WHERE started_at >= ended_at 
    OR TIMESTAMPDIFF(SECOND, started_at, ended_at) < 60;
+
+-- Calculate average duration with raw data
+SELECT 
+    member_casual, 
+    COUNT(*) as total_rows,
+    AVG(TIMESTAMPDIFF(MINUTE, started_at, ended_at)) as raw_avg_duration
+FROM main_data
+GROUP BY member_casual;
+
+-- Calculate average duration with cleaned data
+SELECT 
+    member_casual, 
+    COUNT(*) AS total_rows,
+    ROUND(AVG(CASE 
+        WHEN TIMESTAMPDIFF(SECOND, started_at, ended_at) >= 60 
+             AND started_at < ended_at 
+        THEN TIMESTAMPDIFF(SECOND, started_at, ended_at) 
+        ELSE NULL 
+    END) / 60, 2) AS cleaned_avg_duration
+FROM main_data
+GROUP BY member_casual;
+
+--Create final data
+CREATE VIEW v_clean_trips AS
+SELECT *
+FROM main_data
+WHERE started_at < ended_at 
+  AND TIMESTAMPDIFF(SECOND, started_at, ended_at) >= 60;
